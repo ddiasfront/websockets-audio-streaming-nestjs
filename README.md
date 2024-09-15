@@ -58,28 +58,34 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Resources
+## Folder structure ( initial idea ) - by module.
 
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+/src
+  /app.module.ts                      # Root module
+  /main.ts                            # Application entry point
+  /common                             # Shared or reusable components
+    /errors
+      /exceptions
+        invalid-file-name.exception.ts  # Custom exception for invalid file name
+      ws-exception.filter.ts            # WebSocket global exception filter
+    /validators
+      file-name-validator.ts            # File name validation logic (now reusable)
+    /filters                            # General or HTTP filters, if needed
+    /interceptors                       # Interceptors (for logging, etc.)
+    /guards                             # Authorization guards
+    /pipes                              # Pipes for validation, transformation, etc.
+    /decorators                         # Custom decorators
+    /utils                              # Utility functions/helpers
+  /file-upload                         # File upload feature
+    /dto
+      file-upload.dto.ts                 # Data Transfer Object for validation
+    /services
+      file-upload.service.ts             # Business logic for file uploads
+    /gateways
+      file-upload.gateway.ts             # WebSocket gateway
+    file-upload.module.ts                # File upload module definition
+  /auth                                # Example auth feature
+    /dto
+    /services
+    /controllers
+    /auth.module.ts

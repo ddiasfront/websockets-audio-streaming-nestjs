@@ -1,17 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import { GoogleCloudStorageService } from './google-cloud-storage.service';
+import { FileNameValidator } from 'src/common/validators/file-name-validator';
 
 @Injectable()
 export class FileService {
-  constructor(private readonly storageService: GoogleCloudStorageService) {}
+  constructor(
+    private readonly storageService: GoogleCloudStorageService,
+    private readonly fileNameValidator: FileNameValidator,
+  ) {}
 
   /**
    * Start a resumable upload session for the file.
    * @param fileName - The name of the file to upload.
    * @returns The resumable upload session URL.
    */
-  async startUpload(fileName: string): Promise<string> {
-    return this.storageService.startResumableUpload(fileName);
+  async startResumableUpload(fileName: string): Promise<string> {
+    const sanitizedFileName =
+      this.fileNameValidator.validateAndSanitizeFileName(fileName);
+    console.log(sanitizedFileName, 'fileName');
+
+    return this.storageService.startResumableUpload(sanitizedFileName);
   }
 
   /**
