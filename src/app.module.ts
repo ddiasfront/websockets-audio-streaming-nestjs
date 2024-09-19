@@ -7,8 +7,9 @@ import { FileService } from './file-upload/services/file.service';
 import { GoogleCloudStorageService } from './file-upload/services/google-cloud-storage.service';
 import { ErrorsModule } from './common/errors/errors.module';
 import { FirebaseModule } from './firebase/firebase.module';
-import { FirestoreService } from './firebase/firestore.service';
-import { MigrationsCommand } from './commands/migrations.command';
+import { MigrationsService } from './commands/migrations/migrations.service';
+import { MigrationsCommand } from './commands/migrations/migrations.command';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -17,13 +18,14 @@ import { MigrationsCommand } from './commands/migrations.command';
     }),
     FirebaseModule,
     ErrorsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
     AudioGateway,
     FileService,
-    FirestoreService,
+    MigrationsService,
     GoogleCloudStorageService,
     MigrationsCommand,
   ],

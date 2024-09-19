@@ -18,9 +18,11 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "migration:create-ticket-collection": "nest build && node dist/cli.js migration:create-ticket-collection"
+    "migration:create-ticket-collection": "nest build && node dist/cli.js migration:create-ticket-collection",
+    "migration:run": "nest build && node dist/cli.js migration:run"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.0.1",
     "@google-cloud/storage": "^7.12.1",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.3",
@@ -29,6 +31,8 @@
     "@nestjs/platform-socket.io": "^10.4.1",
     "@nestjs/websockets": "^10.4.1",
     "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
+    "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "firebase-admin": "^12.5.0",
     "nest-commander": "^3.15.0",
